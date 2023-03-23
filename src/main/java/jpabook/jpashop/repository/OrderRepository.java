@@ -23,7 +23,7 @@ public class OrderRepository {
         return em.find(Order.class, id);
     }
 
-    public List<Order> findAll(OrderSearch orderSearch) {
+    public List<Order> findAllByString(OrderSearch orderSearch) {
         String jpql = "select o from Order o join o.member m";
         boolean isFirstCondition = true;
 
@@ -35,7 +35,7 @@ public class OrderRepository {
             } else {
                 jpql += " and";
             }
-            jpql += " o.status = :stats";
+            jpql += " o.status = :status";
         }
 
         // 회원 이름 검색
